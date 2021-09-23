@@ -5,6 +5,8 @@ from typing import Iterable, Dict, List, Union
 
 import numpy as np
 
+from src.features.build_features import DummyTransformer
+
 
 class RFPredictor(object):
     """
