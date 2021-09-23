@@ -7,10 +7,15 @@ verify_ssl = true
 flake8 = "*"
 coverage = "*"
 Sphinx = "*"
+jupyterlab = "*"
 
 [packages]
-src = {editable = true, path = "./"}
+src = {editable = false, path = "./"}
 awscli = "*"
+numpy = "*"
+pandas = "*"
+scikit-learn = "*"
+seldon-core = "*"
 
 [requires]
 python_version = "3.8"
