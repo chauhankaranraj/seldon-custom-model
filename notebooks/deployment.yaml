@@ -11,6 +11,11 @@ spec:
         - image: chauhankaranraj/seldon-custom-model:latest
           name: sklearn-rf-classifier
           imagePullPolicy: Always
+          env:
+          - name: GUNICORN_WORKERS
+            value: '1'
+          - name: GUNICORN_THREADS
+            value: '2'
     graph:
       children: []
       endpoint:
