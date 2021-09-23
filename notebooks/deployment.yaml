@@ -1,0 +1,21 @@
+apiVersion: machinelearning.seldon.io/v1alpha2
+kind: SeldonDeployment
+metadata:
+  name: seldon-deployment-example
+spec:
+  name: sklearn-rf-deployment
+  predictors:
+  - componentSpecs:
+    - spec:
+        containers:
+        - image: chauhankaranraj/seldon-custom-model:latest
+          name: sklearn-rf-classifier
+          imagePullPolicy: Always
+    graph:
+      children: []
+      endpoint:
+        type: REST
+      name: sklearn-rf-classifier
+      type: MODEL
+    name: sklearn-rf-predictor
+    replicas: 1
