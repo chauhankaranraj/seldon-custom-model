@@ -21,7 +21,7 @@ class RFPredictor(object):
 
     def load(self):
         print("Loading model", os.getpid())
-        with open('../notebooks/model.joblib', 'rb') as f:
+        with open('../../notebooks/model.joblib', 'rb') as f:
             self.model = joblib.load(f)
         print("Loaded model")
 
