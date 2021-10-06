@@ -6,7 +6,7 @@ from typing import Iterable, Dict, List, Union
 import numpy as np
 
 
-class RFPredictor(object):
+class CustomModelServer(object):
     """
     Model template. You can load your model parameters in __init__ from a location accessible at runtime
     """
@@ -19,7 +19,7 @@ class RFPredictor(object):
 
     def load(self):
         print("Loading model", os.getpid())
-        with open('../notebooks/model.joblib', 'rb') as f:
+        with open('model.joblib', 'rb') as f:
             self.model = joblib.load(f)
         print("Loaded model")
 
