@@ -3,13 +3,13 @@ kind: SeldonDeployment
 metadata:
   name: seldon-deployment-example
 spec:
-  name: sklearn-rf-deployment
+  name: sklearn-custom-deployment
   predictors:
   - componentSpecs:
     - spec:
         containers:
         - image: chauhankaranraj/seldon-custom-model:latest
-          name: sklearn-rf-classifier
+          name: sklearn-custom-classifier
           imagePullPolicy: Always
           env:
           - name: GUNICORN_WORKERS
@@ -20,7 +20,7 @@ spec:
       children: []
       endpoint:
         type: REST
-      name: sklearn-rf-classifier
+      name: sklearn-custom-classifier
       type: MODEL
-    name: sklearn-rf-predictor
+    name: sklearn-custom-predictor
     replicas: 1
