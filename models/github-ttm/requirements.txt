@@ -1,4 +1,5 @@
 git+git://github.com/chauhankaranraj/seldon-custom-model.git@custom-model#egg=src
+boto3
 numpy
 pandas
 joblib
