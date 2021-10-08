@@ -1,0 +1,6 @@
+numpy
+pandas
+joblib
+cloudpickle
+scikit-learn
+seldon-core
