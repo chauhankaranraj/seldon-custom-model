@@ -8,7 +8,7 @@ spec:
   - componentSpecs:
     - spec:
         containers:
-        - image: chauhankaranraj/seldon-custom-model:latest
+        - image: quay.io/kachau/seldon-custom-model:latest
           name: sklearn-custom-classifier
           imagePullPolicy: Always
           env:
