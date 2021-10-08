@@ -24,22 +24,26 @@ class CustomModelServer(object):
             aws_access_key_id=os.getenv("S3_ACCESS_KEY"),
             aws_secret_access_key=os.getenv("S3_SECRET_KEY"),
         )
-
-    def load(self):
-        print("Loading model", os.getpid())
-        with open('model.joblib', 'rb') as f:
-            self.model = joblib.load(f)
-        print("Loaded model")
-
-        print("Loading test model", os.getpid())
+        print("Loading model from init", os.getpid())
         buffer = BytesIO()
         s3_object = self.s3_resource.Object(
             os.getenv("S3_BUCKET"),
-            f"ai4ci/github-pr-ttm/model/model.joblib",
+            f"{os.getenv('S3_MODEL_KEY')}/model.joblib",
         )
         s3_object.download_fileobj(buffer)
-        test_model = joblib.load(buffer)
-        print("Loaded test model")
+        self.model = joblib.load(buffer)
+        print("Loaded model from init")
+
+    def load(self):
+        print("Loading model from load", os.getpid())
+        buffer = BytesIO()
+        s3_object = self.s3_resource.Object(
+            os.getenv("S3_BUCKET"),
+            f"{os.getenv('S3_MODEL_KEY')}/model.joblib",
+        )
+        s3_object.download_fileobj(buffer)
+        self.model = joblib.load(buffer)
+        print("Loaded model from load")
 
     def class_names(self) -> Iterable[str]:
         return [f"my_class_{i}" for i in range(10)]
@@ -58,4 +62,4 @@ class CustomModelServer(object):
         feature_names : array of feature names (optional)
         """
         print("Predict called - will run identity function")
-        return X
+        return self.model.predict_proba(X)
